@@ -1,0 +1,68 @@
+.topbar {
+  /* border: 1em solid black; */
+  height: 5vw;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 3em 5rem -1em black;
+  position: fixed;
+  width: 100%;
+}
+
+.searchBox {
+  height: 50%;
+}
+
+.weatherContainer {
+  height: 100vh;
+  margin: 0;
+  background-image: url(default.jpg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.weatherContainer h1 {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+}
+
+.infoContainer {
+  background-color: black;
+
+  width: 100%;
+  opacity: 40%;
+  margin-bottom: 2em;
+}
+
+.weatherInfo {
+  width: 50%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.weatherInfo p {
+  font-size: 2em;
+  color: white;
+}
+
+.forecastContainer {
+  display: flex;
+  justify-content: flex-start;
+  background-color: black;
+  opacity: 40%;
+}
+
+.forecastContainer > h1 {
+  margin: 0;
+  font-size: 5em;
+  width: 30%;
+  height: 100%;
+  color: white;
+  box-shadow: inset -0.5em 0em 0.5em -0.3em white, 0em 0em 0em white;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>weather app</title>
+  </head>
+  <body>
+    <div class="topbar">
+     
+            <h1 style="width: min-content;">Sun/Moon</h1>
+           <span>
+            Temp
+               <button id="tempToogle">C</button>
+            </span> 
+            <div>
+
+                <input type="text" id="searchBox" class="searchBox" placeholder="search city" ></input>
+                <button class="submit" id="submit">search</button>
+            </div>
+     
+    </div>
+    <div class="weatherContainer" id="weatherContainer">
+        <div class="infoContainer">
+            <h1 style="color:white">Check weather report of any city worldwide</h1>
+
+            <div class="weatherInfo" id=weatherInfo"">
+                <p id="ncity"> </p>    
+                <p id="tempreature"></p>
+                <p id="humidity"> </p>
+                <p id="condition"> </p>
+                
+            </div>
+
+        </div>
+        <div class="forecastContainer" id="forecastContainer">
+            <h1>Forecast</h1>
+        </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -14,6 +14,8 @@ const condition = document.getElementById("condition");
 const forecastContainer = document.getElementById("forecastContainer");
 const tempToogle = document.getElementById("tempToogle");
 
+// to render the forecast data
+
 function forecast(Data) {
   searchCount++;
 
@@ -21,6 +23,8 @@ function forecast(Data) {
 
   var DayData = Data.forecast.forecastday;
 
+  // forcaste data is for the five days,
+  // and has 4 basic information showing date,avg temp , avg humidity and condition
   for (var i = 0; i < 5; i++) {
     const newDiv = document.createElement("div");
 
@@ -48,15 +52,26 @@ function forecast(Data) {
     newDiv.style.backgroundColor = "black";
     // newDiv.style.opacity = 100 + "%";
     newDiv.style.color = "white";
-    newDiv.style.fontSize = 1 + "em";
+
+    if (window.innerWidth < 600) {
+      newDiv.style.fontSize = 3 + "vw";
+      newDiv.style.width = 100 + "px";
+      newPara1.style.width = 8 + "em";
+    } else {
+      newDiv.style.fontSize = 1 + "em";
+      newDiv.style.width = 10 + "%";
+    }
     newDiv.style.borderRadius = 0.5 + "em";
     newDiv.style.border = ".2em solid white";
-    newDiv.style.width = 10 + "%";
-    newDiv.style.marginLeft = 1 + "em";
+
+    newDiv.style.padding = 2 + "vw";
+    newDiv.style.marginLeft = 2 + "em";
 
     forecastContainer.appendChild(newDiv);
   }
 }
+
+//fetching the data front the api , funciton triggered when the search button is clicked
 
 async function weatherData(city) {
   const exp =
@@ -70,8 +85,8 @@ async function weatherData(city) {
     "&days=" +
     "5";
 
-  const res = await fetch(exp);
-  const res1 = await fetch(exp1);
+  const res = await fetch(exp); // it's for the current condition of weather
+  const res1 = await fetch(exp1); // for the forecast of next days
 
   const data = await res.json();
   const data1 = await res1.json();
@@ -83,6 +98,10 @@ searchbox.addEventListener("input", function () {
   console.log(searchbox.value);
   city = searchbox.value;
 
+  // once the blocks for the forecaste are created the need to be deleted for the next search
+  // so if we have already searched a city we need to remove these blocks
+  //removeCount keeps in track that we are not trying to remove more elements than necessary.
+
   if (searchCount > 0 && removingCount === 0) {
     removingCount++;
     for (let i = 0; i < 5; i++) {
@@ -91,7 +110,11 @@ searchbox.addEventListener("input", function () {
       forecastContainer.removeChild(toRemove);
     }
   }
+
+  searchCount = 0;
 });
+
+// loads the data for current day and displays it
 
 async function submitAction() {
   removingCount = 0;
@@ -129,6 +152,9 @@ async function submitAction() {
   forecast(Data);
 }
 
+// to change tempreature in different unit
+// From Celcius to fahrenhite and viseversa
+
 tempToogle.addEventListener("click", function () {
   searchCount++;
   tempUnit = !tempUnit;
@@ -156,5 +182,7 @@ tempToogle.addEventListener("click", function () {
 });
 
 submitButton.addEventListener("click", function () {
-  submitAction();
+  if (searchCount === 0) {
+    submitAction();
+  }
 });
